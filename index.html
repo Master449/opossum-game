@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>OPOSSUMS</title>
+  </head>
+  <body>
+    <!-- <h2>You have rescued {{ opossums }} opossums!</h2>
+    <img :src="sillyGuys[1]" />
+    <button @click="opossums = opossums + 1">Rescue an Opossum</button> -->
+    <div id="game-container">
+      <div class="center">
+        <div class="flex-container">
+          <table>
+            <tr>
+              <td><img :src="sillyGuys[1]" /></td>
+
+              <td>
+                <h4>Statistics</h4>
+                <ul>
+                  <li>Total Opossums: {{ opossums }}</li>
+                  <li>Savings: $ {{ money }}</li>
+                  <li>Total Visitors: {{ visitors }}</li>
+                  <li>Days Open: {{ daysOpen }}</li>
+                  <li>Total Days: {{ totalDays }}</li>
+                </ul>
+                <h5>You are currently idle.</h5>
+                <button class="action">Go Looking for Friends</button>
+                <button class="action">Open to Visitors</button>
+                <h5></h5>
+              </td>
+            </tr>
+          </table>
+        </div>
+        <br />
+        <div class="flex-container">
+          <div v-for="item in upgradeList" :key="item">
+            <button class="upgrade">
+              {{ item.title }}<br /><i> Cost: {{ item.cost }}</i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const cart = Vue.createApp({
+      data() {
+        return {
+          opossums: 0,
+          money: 0,
+          daysOpen: 0,
+          totalDays: 0,
+          visitors: 0,
+          sillyGuys: ["/images/silly.jpeg", "/images/silly2.jpeg"],
+          upgradeList: {
+            0: {
+              title: "Feed",
+              cost: 10,
+            },
+            1: {
+              title: "Water",
+              cost: 25,
+            },
+            2: {
+              title: "Bed",
+              cost: 100,
+            },
+            3: {
+              title: "Blankets",
+              cost: 0,
+            },
+            4: {
+              title: "",
+              cost: 0,
+            },
+          },
+        };
+      },
+      methods: {
+        lookForFriends() {},
+        openToVisitors() {},
+      },
+    }).mount('#game-container');
+  </script>
+</html>
