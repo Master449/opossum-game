@@ -15,7 +15,13 @@ $disabledColor: #dddddd;
 $white: #ffffff;
 
 // ---- Sizing ----
-$buttonFontSize: 16px;
+$buttonFontSize: 1.5em;
+
+$header1: 2em;
+$header2: 1.5em;
+$header3: 1.3em;
+$header4: 1em;
+$header5: 0.8em;
 
 html {
   background-color: $dark;
@@ -26,11 +32,32 @@ html {
   color: $white;
 }
 
-h1,
-h2,
-h3,
-h4,
+h1 {
+  color: $white;
+  font-family: $titleFont;
+  size: $header1;
+}
+
+h2 {
+  color: $white;
+  font-family: $titleFont;
+  size: $header2;
+}
+
+h3 {
+  color: $white;
+  font-family: $titleFont;
+  size: $header3;
+}
+
+h4 {
+  color: $white;
+  font-family: $titleFont;
+  size: $header4;
+}
+
 h5 {
+  color: $white;
   font-family: $titleFont;
   color: $white;
 }
