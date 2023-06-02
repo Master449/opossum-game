@@ -4,7 +4,8 @@
 }
 
 // ---- Fonts ----
-$titleFont: 'DumbNSilly';
+$titleFont: "Helvetica";
+$regularFont: "Helvetica";
 
 // ---- Colors ----
 $primary: #dfa59a;
@@ -15,7 +16,7 @@ $disabledColor: #dddddd;
 $white: #ffffff;
 
 // ---- Sizing ----
-$buttonFontSize: 1.5em;
+$buttonFontSize: 1.25em;
 
 $header1: 2em;
 $header2: 1.5em;
@@ -67,7 +68,7 @@ i,
 li,
 strong {
   color: $white;
-  font-family: $titleFont;
+  font-family: $regularFont;
 }
 
 tr {
@@ -118,7 +119,7 @@ button {
   font-weight: 600;
   line-height: 20px;
   outline: none;
-  padding: 13px 23px;
+  padding: 0;
   position: relative;
   text-align: center;
   text-decoration: none;

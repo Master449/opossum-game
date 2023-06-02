@@ -13,31 +13,31 @@ html {
 
 h1 {
   color: #ffffff;
-  font-family: "DumbNSilly";
+  font-family: "Helvetica";
   size: 2em;
 }
 
 h2 {
   color: #ffffff;
-  font-family: "DumbNSilly";
+  font-family: "Helvetica";
   size: 1.5em;
 }
 
 h3 {
   color: #ffffff;
-  font-family: "DumbNSilly";
+  font-family: "Helvetica";
   size: 1.3em;
 }
 
 h4 {
   color: #ffffff;
-  font-family: "DumbNSilly";
+  font-family: "Helvetica";
   size: 1em;
 }
 
 h5 {
   color: #ffffff;
-  font-family: "DumbNSilly";
+  font-family: "Helvetica";
   color: #ffffff;
 }
 
@@ -46,7 +46,7 @@ i,
 li,
 strong {
   color: #ffffff;
-  font-family: "DumbNSilly";
+  font-family: "Helvetica";
 }
 
 tr {
@@ -82,8 +82,8 @@ img {
 }
 
 button {
-  font-family: "DumbNSilly";
-  font-size: 1.5em;
+  font-family: "Helvetica";
+  font-size: 1.25em;
   background-color: #3f3f3f;
   border: 1px solid #ffffff;
   border-radius: 8px;
@@ -94,7 +94,7 @@ button {
   font-weight: 600;
   line-height: 20px;
   outline: none;
-  padding: 13px 23px;
+  padding: 0;
   position: relative;
   text-align: center;
   text-decoration: none;
