@@ -16,11 +16,10 @@ app.use(
   })
 );
 
-// Engine
 app.engine('html', require('ejs').renderFile);
 app.set('view engine', 'html');
 
-// Static Folders (CSS + Vue Components)
+// Static Folder (images, css, fonts etc)
 app.use(express.static(path.join(__dirname, 'assets')));
 
 app.get('/', (req, res) => {
@@ -34,5 +33,5 @@ app.get('*', (req, res) => {
 });
 
 app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+    console.log(`Swag Opossums near you at: http://localhost:3000`)
 })
