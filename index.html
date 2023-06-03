@@ -4,8 +4,8 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/x-icon" href="/images/favicon.png">
-    <link rel="stylesheet" href="/css/styles.css">
+    <link rel="icon" type="image/x-icon" href="/images/favicon.png" />
+    <link rel="stylesheet" href="/css/styles.css" />
     <title>OPOSSUMS</title>
   </head>
   <body>
@@ -17,29 +17,42 @@
         <div class="flex-container">
           <table>
             <tr>
-              <td><img :src="sillyGuys[1]" /></td>
-
+              <td><img :src="sillyGuy" /></td>
               <td>
                 <h1>Statistics</h1>
-                <ul>
-                  <li>Total Opossums: {{ opossums }}</li>
-                  <li>Savings: $ {{ money }}</li>
-                  <li>Total Visitors: {{ visitors }}</li>
-                  <li>Days Open: {{ daysOpen }}</li>
-                  <li>Total Days: {{ totalDays }}</li>
-                </ul>
-                <h2>You are currently idle.</h2>
+                <table class="subtable">
+                  <tr>
+                    <td><p>Total Opossums:</p></td>
+                    <td><p>{{ opossums }}</p></td>
+                  </tr>
+                  <tr>
+                    <td><p>Savings:</p></td>
+                    <td><p>{{ money }}</p></td>
+                  </tr>
+                  <tr>
+                    <td><p>Total Visitors:</p></td>
+                    <td><p>{{ visitors }}</p></td>
+                  </tr>
+                  <tr>
+                    <td><p>Days Open:</p></td>
+                    <td><p>{{ daysOpen }}</p></td>
+                  </tr>
+                  <tr>
+                    <td><p>Total Days:</p></td>
+                    <td><p>{{ totalDays }}</p></td>
+                  </tr>
+                </table>
+                <h2>{{ currentlyDoing }}</h2>
                 <button class="action">Go Looking for Friends</button>
                 <button class="action">Open to Visitors</button>
-                <h5></h5>
               </td>
             </tr>
           </table>
         </div>
         <br />
         <div class="flex-container">
-          <div v-for="item in upgradeList" :key="item">
-            <button class="upgrade">
+          <div v-for="(item, index) in upgradeList" :key="item">
+            <button class="upgrade" @click="handleUpgrade(index)">
               {{ item.title }}<br /><i> Cost: {{ item.cost }}</i>
             </button>
           </div>
@@ -57,7 +70,13 @@
           daysOpen: 0,
           totalDays: 0,
           visitors: 0,
-          sillyGuys: ["/images/silly.jpeg", "/images/silly2.jpeg"],
+          sillyGuy: null,
+          currentlyDoing: "You are currently idle.",
+          sillyGuys: [
+            "/images/silly.jpg",
+            "/images/silly2.jpeg",
+            "/images/silly3.jpeg",
+          ],
           upgradeList: {
             0: {
               title: "Feed",
@@ -85,7 +104,21 @@
       methods: {
         lookForFriends() {},
         openToVisitors() {},
+        handleUpgrade(index) {
+          console.log(index);
+          switch(index) {
+            case 0:
+              console.log('Zero');
+              break;
+              default:
+                console.log(index);
+          }
+        }
       },
-    }).mount('#game-container');
+      created() {
+        var random = Math.floor(Math.random() * this.sillyGuys.length);
+        this.sillyGuy = this.sillyGuys[random];
+      },
+    }).mount("#game-container");
   </script>
 </html>
