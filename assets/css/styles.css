@@ -1,5 +1,11 @@
 html {
   background-color: #121212;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
 }
 
 .game-container {
@@ -54,8 +60,17 @@ tr {
 img {
   border-radius: 5%;
   margin: 5em;
+  height: 500px;
+  width: 500px;
+  aspect-ratio: 1/1;
 }
 
+@media only screen and (max-width: 600px) {
+  img {
+    border-radius: 5%;
+    width: 200px;
+  }
+}
 .center {
   width: 75%;
   margin: auto;
@@ -64,13 +79,21 @@ img {
 .flex-container {
   display: inline-flex;
   flex-wrap: wrap;
-}
-.flex-container .split {
-  width: 50%;
+  align-items: center;
+  width: 100%;
 }
 .flex-container button i {
   font-size: 12px;
   font-weight: normal;
+}
+.flex-container .subflex {
+  flex-wrap: wrap;
+  flex-grow: 1;
+  flex-shrink: 0;
+}
+
+table {
+  width: 100%;
 }
 
 button {
@@ -117,8 +140,4 @@ button.upgrade {
   margin: 0.5em;
   width: 100px;
   height: 100px;
-}
-
-.subtable {
-  width: 100%;
 }/*# sourceMappingURL=styles.css.map */

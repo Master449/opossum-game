@@ -21,6 +21,12 @@ $header5: 0.8em;
 
 html {
   background-color: $dark;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  width: 100%;
 }
 
 .game-container {
@@ -75,6 +81,16 @@ tr {
 img {
   border-radius: 5%;
   margin: 5em;
+  height: 500px;
+  width: 500px;
+  aspect-ratio: 1 / 1;
+}
+
+@media only screen and (max-width: 600px) {
+  img {
+    border-radius: 5%;
+    width: 200px;
+  }
 }
 
 .center {
@@ -85,15 +101,23 @@ img {
 .flex-container {
   display: inline-flex;
   flex-wrap: wrap;
-
-  .split {
-    width: 50%;
-  }
+  align-items: center;
+  width: 100%;
 
   button i {
     font-size: 12px;
     font-weight: normal;
   }
+
+  .subflex {
+    flex-wrap: wrap;
+    flex-grow: 1;
+    flex-shrink: 0;
+  }
+}
+
+table {
+  width: 100%;
 }
 
 // Yes this is indeed the button from Airbnb
@@ -146,8 +170,4 @@ button {
     width: 100px;
     height: 100px;
   }
-}
-
-.subtable {
-  width: 100%;
 }

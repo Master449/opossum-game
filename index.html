@@ -15,11 +15,9 @@
     <div id="game-container">
       <div class="center">
         <div class="flex-container">
-          <table>
-            <tr>
-              <td><img :src="sillyGuy" /></td>
-              <td>
-                <h1>Statistics</h1>
+            <div class="subflex"><img :src="sillyGuy" /></div>
+            <div class="subflex">
+              <h1>Statistics</h1>
                 <table class="subtable">
                   <tr>
                     <td><p>Total Opossums:</p></td>
@@ -45,9 +43,7 @@
                 <h2>{{ currentlyDoing }}</h2>
                 <button class="action">Go Looking for Friends</button>
                 <button class="action">Open to Visitors</button>
-              </td>
-            </tr>
-          </table>
+            </div>
         </div>
         <br />
         <div class="flex-container">
@@ -105,10 +101,9 @@
         lookForFriends() {},
         openToVisitors() {},
         handleUpgrade(index) {
-          console.log(index);
-          switch(index) {
+          switch(parseInt(index)) {
             case 0:
-              console.log('Zero');
+              console.log('Yup this is a zero');
               break;
               default:
                 console.log(index);
