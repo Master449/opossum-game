@@ -172,3 +172,16 @@ button {
     height: 100px;
   }
 }
+
+.statusButton {
+  border-radius: 0;
+  margin-bottom: 1%;
+
+  &.food {
+    background-color: brown;
+  }
+
+  &.water {
+    background-color: dodgerblue;
+  }
+}

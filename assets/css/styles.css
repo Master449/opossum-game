@@ -140,4 +140,15 @@ button.upgrade {
   margin: 0.5em;
   width: 100px;
   height: 100px;
+}
+
+.statusButton {
+  border-radius: 0;
+  margin-bottom: 1%;
+}
+.statusButton.food {
+  background-color: brown;
+}
+.statusButton.water {
+  background-color: dodgerblue;
 }/*# sourceMappingURL=styles.css.map */

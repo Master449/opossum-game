@@ -41,10 +41,17 @@
                   </tr>
                 </table>
                 <h2>{{ currentlyDoing }}</h2>
-                <button class="action">Go Looking for Friends</button>
+                <button @click="lookForFriends" class="action">Go Looking for Friends</button>
                 <button class="action">Open to Visitors</button>
             </div>
         </div>
+        <span>
+          <button class="statusButton food" v-bind:style="{width: calcPercentage(food, maxFood) + '%'}">Food</button>
+        </span>
+        <br />
+        <span>
+          <button class="statusButton water" v-bind:style="{width: calcPercentage(water, maxWater) + '%'}">Water</button>
+        </span>
         <br />
         <div class="flex-container">
           <div v-for="(item, index) in upgradeList" :key="item">
@@ -63,10 +70,15 @@
         return {
           opossums: 0,
           money: 0,
+          food: 45,
+          maxFood: 50,
+          water: 50,
+          maxWater: 50,
           daysOpen: 0,
           totalDays: 0,
           visitors: 0,
           sillyGuy: null,
+          recentlyFound: 0,
           currentlyDoing: "You are currently idle.",
           sillyGuys: [
             "/images/silly.jpg",
@@ -98,8 +110,43 @@
         };
       },
       methods: {
-        lookForFriends() {},
+        lookForFriends() {
+          this.recentlyFound = 0
+          var sillyChance = this.getRandomValue(0, 100);
+          if (sillyChance >= 0 && sillyChance < 5){
+            this.opossums += 3;
+            this.recentlyFound = 3;
+          } else if (sillyChance >= 5 && sillyChance < 20 ) {
+            this.opossums += 2;
+            this.recentlyFound = 2;
+          } else if (sillyChance >= 21 && sillyChance < 50) {
+            this.opossums += 1;
+            this.recentlyFound = 1;
+          } else {
+            // no silly guys found :(
+          }
+
+          if (this.recentlyFound == 0) {
+            this.currentlyDoing = `You found ${this.recentlyFound} opossums :(`;
+          } else {
+            this.currentlyDoing = `You found ${this.recentlyFound} opossums!`;
+          }
+          this.advanceDay();
+        },
         openToVisitors() {},
+        advanceDay(open) {
+          var usage = parseInt(this.opossums * 0.15);
+          if (usage == 0 && this.opossums >= 1) {
+            usage = 1;
+          }
+          this.food -= usage;
+          this.water -= (usage * 2);
+
+          if(open) {
+            this.daysOpen += 1;
+          }
+          this.totalDays += 1;
+        },
         handleUpgrade(index) {
           switch(parseInt(index)) {
             case 0:
@@ -108,6 +155,12 @@
               default:
                 console.log(index);
           }
+        },
+        getRandomValue(min, max) {
+          return Math.floor(Math.random() * (max - min) + min);
+        },
+        calcPercentage(option, total) {
+          return parseFloat((option / total) * 100) || 0;
         }
       },
       created() {
