@@ -42,7 +42,7 @@
                 </table>
                 <h2>{{ currentlyDoing }}</h2>
                 <button @click="lookForFriends" class="action">Go Looking for Friends</button>
-                <button class="action">Open to Visitors</button>
+                <button @click="openToVisitors" class="action">Open to Visitors</button>
             </div>
         </div>
         <span>
@@ -55,7 +55,7 @@
         <br />
         <div class="flex-container">
           <div v-for="(item, index) in upgradeList" :key="item">
-            <button class="upgrade" @click="handleUpgrade(index)">
+            <button class="upgrade" @click="handleUpgrade(item)" :disabled="isDisabled(item.cost)">
               {{ item.title }}<br /><i> Cost: {{ item.cost }}</i>
             </button>
           </div>
@@ -65,11 +65,11 @@
   </body>
   <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
   <script>
-    const cart = Vue.createApp({
+    const sillyGuys = Vue.createApp({
       data() {
         return {
           opossums: 0,
-          money: 0,
+          money: 100,
           food: 45,
           maxFood: 50,
           water: 50,
@@ -97,6 +97,7 @@
             2: {
               title: "Bed",
               cost: 100,
+              owned: 0,
             },
             3: {
               title: "Blankets",
@@ -123,7 +124,7 @@
             this.opossums += 1;
             this.recentlyFound = 1;
           } else {
-            // no silly guys found :(
+            // no silly guys found
           }
 
           if (this.recentlyFound == 0) {
@@ -133,14 +134,37 @@
           }
           this.advanceDay();
         },
-        openToVisitors() {},
+        openToVisitors() {
+          var newVisitors = (this.opossums * 0.5)
+          var moneyObtained = (newVisitors * 2)
+
+          // Please take care of the friends :(
+          if (this.food == 0 || this.water == 0) {
+            if (this.upgradeList[0].owned == 0) {
+              moneyObtained *= 0;
+            }
+          }
+
+          console.log(moneyObtained)
+
+          this.advanceDay(true);
+        },
         advanceDay(open) {
           var usage = parseInt(this.opossums * 0.15);
           if (usage == 0 && this.opossums >= 1) {
             usage = 1;
           }
-          this.food -= usage;
-          this.water -= (usage * 2);
+          if (usage >= this.food) {
+            this.food = 0;
+          } else {
+            this.food -= usage;
+          }
+
+          if ((usage * 2) >= this.water) {
+            this.water = 0;
+          } else {
+            this.water -= (usage * 2);
+          }
 
           if(open) {
             this.daysOpen += 1;
@@ -148,19 +172,26 @@
           this.totalDays += 1;
         },
         handleUpgrade(index) {
-          switch(parseInt(index)) {
-            case 0:
-              console.log('Yup this is a zero');
+          console.log(index.title);
+          switch(index.title) {
+            case "Feed":
+              this.food = this.maxFood;
               break;
+            case "Water":
+              this.water = this.maxWater;
               default:
                 console.log(index);
           }
+          this.money -= index.cost
         },
         getRandomValue(min, max) {
           return Math.floor(Math.random() * (max - min) + min);
         },
         calcPercentage(option, total) {
-          return parseFloat((option / total) * 100) || 0;
+          return parseFloat((option / total) * 100);
+        },
+        isDisabled(arg) {
+          return (this.money < arg);
         }
       },
       created() {
